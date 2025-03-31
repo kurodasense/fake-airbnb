@@ -64,7 +64,12 @@ useEffect(() => {
 }, []);
 ```
 
+##### 结合 redux 设置 header 是否固定
+
+
+
 #### content
+
 ##### item 组件的实现
 不等宽高的图片实现统一宽高的显示：
 * 给`.cover`设置一个`padding: 66.66% 8px 0`，使其形成一个类似于占位符的效果。然后再让`img`通过绝对定位的方式给把 padding 区域给覆盖住，然后设置`width: 100%;height: 100%;`来实现图片的统一宽高显示。
@@ -110,3 +115,18 @@ setShowRightBtn(totalDistanceRef.current > 0); // 判断是否还有可滚动距
 
 * 左按钮：判断`scrollContentRef.current.children[newIndex]`的`offsetLeft`是否为0，即左边不可见范围都没有元素了就不显示左按钮。
 * 右按钮：判断上述的`offsetLeft`是否小于`totalDistanceRef`，即总的可滚动距离是否全都在左侧。
+
+#### entire 页面
+
+##### 过滤器 tabs
+
+##### item 的轮播图组件
+
+使用 antd 的 carousel 组件，自定义指示器 indicator 实现。
+
+##### 分页器
+
+分页器使用 mui/material 组件库的 Pagination 组件实现。
+
+结合后端接口，将 totalCount 、currentPage 放在 slice 中存储。监听 Pagination 的 onChange ，根据 newPage 发送相应的 fetchEntireDataAction 来请求相应页面的数据，并同时修改 currentPage 。
+

@@ -1,32 +1,38 @@
 import { getEntireRoomList } from "@/services/modules/entire";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const getEntireListAction = createAsyncThunk(
+export const fetchEntireDataAction = createAsyncThunk(
   "fetchEntire",
-  async (payload, { dispatch, getState }) => {
-    const state = getState();
-    const currentPage = state.entire.currenPage;
-    const { list, totalCount } = await getEntireRoomList(currentPage, 20);
+  async (page, { dispatch }) => {
+    if (!page) page = 0;
+    dispatch(changeIsLoadingAction(true));
+    const { list, totalCount } = await getEntireRoomList(page, 20);
+    dispatch(changeCurrentPageAction(page));
     dispatch(changeRoomListAction(list));
     dispatch(changeTotalCountAction(totalCount));
+    dispatch(changeIsLoadingAction(false));
   }
 );
 
 const initialState = {
-  currenPage: 0,
+  currentPage: 0,
   roomList: [],
   totalCount: 0,
+  isLoading: false,
 };
 
 const reducers = {
   changeCurrentPageAction(state, { payload }) {
-    state.currenPage = payload;
+    state.currentPage = payload;
   },
   changeRoomListAction(state, { payload }) {
     state.roomList = payload;
   },
   changeTotalCountAction(state, { payload }) {
     state.totalCount = payload;
+  },
+  changeIsLoadingAction(state, { payload }) {
+    state.isLoading = payload;
   },
 };
 
@@ -40,6 +46,7 @@ export const {
   changeCurrentPageAction,
   changeRoomListAction,
   changeTotalCountAction,
+  changeIsLoadingAction,
 } = entireSlice.actions;
 
 export default entireSlice.reducer;

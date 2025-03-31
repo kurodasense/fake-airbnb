@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const LeftWrapper = styled.div`
   flex: 1;
   display: flex;
-  color: ${(props) => props.theme.color.primary};
+  color: ${(props) =>
+    props.theme.isAlpha ? "#ffffff" : props.theme.color.primary};
   align-items: center;
 
   .logo {

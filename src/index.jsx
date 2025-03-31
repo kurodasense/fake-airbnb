@@ -12,14 +12,14 @@ import theme from "@/assets/theme";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Suspense fallback="loading">
-      <Provider store={store}>
+    <Provider store={store}>
+      <Suspense fallback="loading">
         <ThemeProvider theme={theme}>
           <HashRouter>
             <App />
           </HashRouter>
         </ThemeProvider>
-      </Provider>
-    </Suspense>
+      </Suspense>
+    </Provider>
   </StrictMode>
 );

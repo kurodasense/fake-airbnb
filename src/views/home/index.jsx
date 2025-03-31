@@ -9,6 +9,8 @@ import HomeSectionV2 from "./c-cpns/home-section-v2";
 import { isEmptyObject } from "@/utils";
 import HomeLongfor from "./c-cpns/home-longfor";
 import HomeSectionV3 from "./c-cpns/home-section-v3";
+import AppHeader from "@/components/app-header";
+import { changeHeaderConfigAction } from "@/store/modules/main";
 
 const Home = memo(() => {
   const dispatch = useDispatch();
@@ -16,6 +18,12 @@ const Home = memo(() => {
   // 网络请求
   useEffect(() => {
     dispatch(fetchHomeDataAction());
+    dispatch(
+      changeHeaderConfigAction({
+        isFixed: true,
+        topAlpha: true,
+      })
+    );
   }, [dispatch]);
 
   const {

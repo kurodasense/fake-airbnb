@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 const FilterWrapper = styled.div`
-  /* position: fixed;
-  z-index: 9;
+  position: fixed;
+  top: 80px;
   left: 0;
   right: 0;
-  top: 80px; */
-
+  z-index: 99;
   display: flex;
   align-items: center;
   height: 48px;
